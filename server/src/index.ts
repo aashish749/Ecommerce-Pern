@@ -34,7 +34,7 @@ app.use(
       "http://localhost:5174",
       "http://localhost:5175",
       "http://localhost:5176",
-      "http://localhost:5177",
+      "https://ecommerce-pern-client-three.vercel.app",
       process.env.CLIENT_URL,
     ].filter((x): x is string => Boolean(x)),
     credentials: true,
@@ -103,3 +103,5 @@ if (process.env.NODE_ENV !== "production") {
     console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
   });
 }
+
+//test
