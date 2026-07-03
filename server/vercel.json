@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "buildCommand": "npx tsc",
   "builds": [
     {
       "src": "dist/index.js",
@@ -11,10 +12,5 @@
       "src": "/(.*)",
       "dest": "dist/index.js"
     }
-  ],
-  "functions": {
-    "dist/index.js": {
-      "memory": 300
-    }
-  }
+  ]
 }
