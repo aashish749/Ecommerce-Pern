@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "cd server && npx tsc",
   "builds": [
     {
       "src": "server/src/index.ts",
