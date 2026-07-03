@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { db } from "../db/db.js";
-import { categories, productCategories } from "../db/schema.js";
+import { db } from "../db/db";
+import { categories, productCategories } from "../db/schema";
 import { eq } from "drizzle-orm";
 
 export const categoryController = {

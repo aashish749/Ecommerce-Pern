@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { getAuth } from "@clerk/express";
-import { db } from "../db/index.js";
-import { users } from "../db/schema.js";
+import { db } from "../db/index";
+import { users } from "../db/schema";
 import { eq } from "drizzle-orm";
 import { Webhook } from "svix";
-import { clerkUserSchema } from "../utils/validation.js";
+import { clerkUserSchema } from "../utils/validation";
 
 export const getMe = async (req: Request, res: Response) => {
   const { userId, sessionClaims } = getAuth(req);

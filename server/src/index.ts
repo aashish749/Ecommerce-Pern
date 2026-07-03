@@ -3,25 +3,25 @@ import express from "express";
 import cors from "cors";
 import "dotenv/config";
 import { sql } from "drizzle-orm";
-import { db } from "./db/db.js";
+import { db } from "./db/db";
 import { clerkMiddleware } from "@clerk/express";
-import authRoutes from "./routes/auth.js";
-import clerkWebhookRoutes from "./routes/clerkWebhook.js";
-import uploadRoutes from "./routes/upload.js";
-import categoryRoutes from "./routes/categories.js";
-import productRoutes from "./routes/products.js";
-import cartRoutes from "./routes/cart.js";
-import checkoutRoutes from "./routes/checkout.js";
-import orderRoutes from "./routes/orders.js";
-import webhookRoutes from "./routes/webhooks.js";
-import adminRoutes from "./routes/admin.js";
+import authRoutes from "./routes/auth";
+import clerkWebhookRoutes from "./routes/clerkWebhook";
+import uploadRoutes from "./routes/upload";
+import categoryRoutes from "./routes/categories";
+import productRoutes from "./routes/products";
+import cartRoutes from "./routes/cart";
+import checkoutRoutes from "./routes/checkout";
+import orderRoutes from "./routes/orders";
+import webhookRoutes from "./routes/webhooks";
+import adminRoutes from "./routes/admin";
 
 import {
   products,
   categories,
   productImages,
   productVariants,
-} from "./db/schema.js";
+} from "./db/schema";
 
 const app = express();
 const PORT = process.env.PORT || 5000;

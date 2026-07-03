@@ -1,7 +1,7 @@
 // server/src/db/seed.ts
 import "dotenv/config";
 import { sql } from "drizzle-orm";
-import { db } from "./db.js";
+import { db } from "./db";
 import {
   users,
   categories,
@@ -12,7 +12,7 @@ import {
   cartItems,
   orders,
   orderItems,
-} from "./schema.js";
+} from "./schema";
 
 // ------------------------------------------------------------------
 // Helper to pick random item from array

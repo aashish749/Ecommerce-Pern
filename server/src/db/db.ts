@@ -1,6 +1,6 @@
 import { drizzle } from "drizzle-orm/neon-http";
 import { neon } from "@neondatabase/serverless";
-import * as schema from "./schema.js";
+import * as schema from "./schema";
 import { config } from "dotenv";
 
 config({ path: ".env" });
