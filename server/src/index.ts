@@ -103,5 +103,3 @@ if (process.env.NODE_ENV !== "production") {
     console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
   });
 }
-
-//test
