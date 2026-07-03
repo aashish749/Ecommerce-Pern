@@ -41,12 +41,12 @@ app.use(
   }),
 );
 
-app.use(clerkMiddleware());
-
 // Webhook routes — mounted BEFORE express.json()
 // They MUST receive the raw body (Buffer) for svix/Stripe signature verification
 app.use("/api/auth/webhooks", clerkWebhookRoutes);
 app.use("/api/webhooks", webhookRoutes);
+
+app.use(clerkMiddleware());
 
 // All other routes use standard JSON parsing
 app.use(express.json());
