@@ -35,7 +35,8 @@ app.use(
       "http://localhost:5175",
       "http://localhost:5176",
       "http://localhost:5177",
-    ],
+      process.env.CLIENT_URL,
+    ].filter((x): x is string => Boolean(x)),
     credentials: true,
   }),
 );
