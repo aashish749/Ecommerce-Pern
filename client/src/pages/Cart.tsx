@@ -127,7 +127,7 @@ export default function Cart() {
               {/* Subtotal */}
               <div className="w-24 text-right">
                 <p className="font-semibold">
-                  €{(parseFloat(item.product.price) * item.quantity).toFixed(2)}
+                  €{((item.product.price as number) * item.quantity).toFixed(2)}
                 </p>
               </div>
 

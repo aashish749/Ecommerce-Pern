@@ -16,7 +16,9 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
     );
   }
 
-  const sorted = [...images].sort((a, b) => a.displayOrder - b.displayOrder);
+  const sorted = [...images].sort(
+    (a, b) => (a.displayOrder ?? 0) - (b.displayOrder ?? 0),
+  );
   const selected = sorted[selectedIndex];
 
   return (
