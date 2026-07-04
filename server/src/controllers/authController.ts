@@ -61,9 +61,15 @@ export const handleClerkWebhook = async (req: Request, res: Response) => {
     return res.status(500).json({ error: "Webhook secret not configured" });
   }
 
-  // On Vercel serverless, the body arrives already parsed as JSON
-  // Stringify it back to a raw string for svix signature verification
-  const payload = JSON.stringify(req.body);
+  // Use the raw body captured by express.json() verify callback
+  const payload = (req as any).rawBody;
+
+  if (!payload) {
+    console.error(
+      "rawBody is empty — express.json() verify callback may not have fired",
+    );
+    return res.status(500).json({ error: "Raw body not available" });
+  }
 
   const webhook = new Webhook(secret);
   let evt: any;

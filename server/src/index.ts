@@ -41,15 +41,20 @@ app.use(
   }),
 );
 
-// Webhook routes — mounted BEFORE express.json()
-// They MUST receive the raw body (Buffer) for svix/Stripe signature verification
+// Capture raw body before JSON parsing — needed for svix/Stripe signature verification
+app.use(
+  express.json({
+    verify: (req: any, _res, buf) => {
+      req.rawBody = buf.toString();
+    },
+  }),
+);
+
+// Webhook routes — mounted after express.json() so verify callback captures raw body
 app.use("/api/auth/webhooks", clerkWebhookRoutes);
 app.use("/api/webhooks", webhookRoutes);
 
 app.use(clerkMiddleware());
-
-// All other routes use standard JSON parsing
-app.use(express.json());
 
 // Regular routes
 app.use("/api/auth", authRoutes);
