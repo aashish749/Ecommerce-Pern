@@ -47,7 +47,6 @@ export const getMe = async (req: Request, res: Response) => {
 // HANDLE CLERK WEBHOOK
 
 export const handleClerkWebhook = async (req: Request, res: Response) => {
-  const payload = req.body; // raw buffer
   const svixId = req.headers["svix-id"] as string;
   const svixTimestamp = req.headers["svix-timestamp"] as string;
   const svixSignature = req.headers["svix-signature"] as string;
@@ -55,12 +54,18 @@ export const handleClerkWebhook = async (req: Request, res: Response) => {
   if (!svixId || !svixTimestamp || !svixSignature) {
     return res.status(400).json({ error: "Missing svix headers" });
   }
-  console.log("Received Clerk webhook with headers:", {
-    "svix-id": svixId,
-    "svix-timestamp": svixTimestamp,
-    "svix-signature": svixSignature,
-  });
-  const webhook = new Webhook(process.env.CLERK_WEBHOOK_SIGNING_SECRET!);
+
+  const secret = process.env.CLERK_WEBHOOK_SIGNING_SECRET;
+  if (!secret) {
+    console.error("CLERK_WEBHOOK_SIGNING_SECRET is not set");
+    return res.status(500).json({ error: "Webhook secret not configured" });
+  }
+
+  // On Vercel serverless, the body arrives already parsed as JSON
+  // Stringify it back to a raw string for svix signature verification
+  const payload = JSON.stringify(req.body);
+
+  const webhook = new Webhook(secret);
   let evt: any;
   try {
     evt = webhook.verify(payload, {
